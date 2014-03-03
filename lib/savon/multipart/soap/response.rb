@@ -19,13 +19,13 @@ module Savon
 
       # Returns +true+ if this is a multipart response.
       def multipart?
-        http.headers["Content-Type"] =~ /^multipart/
+        http.headers["content-type"] =~ /^multipart/
       end
 
       # Returns the boundary declaration of the multipart response.
       def boundary
         return unless multipart?
-        @boundary ||= Mail::Field.new("Content-Type", http.headers["Content-Type"]).parameters['boundary']
+        @boundary ||= Mail::Field.new("content-type", http.headers["content-type"]).parameters['boundary']
       end
 
       # Returns the Array of attachments if it was a multipart response.
